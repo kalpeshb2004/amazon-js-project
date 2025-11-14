@@ -7,9 +7,9 @@
 //1.Save the data.
 /* instead of using lots of products in js by inserting then one by one we using product page */
 
-let producthtml = ''; 
+let producthtml = "";
 products.forEach((product) => {
-    producthtml += `<div class="product-container">
+  producthtml += `<div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
               src="${product.image}">
@@ -53,12 +53,38 @@ products.forEach((product) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary js-button"
+          data-product-id="${product.id}">
             Add to Cart
           </button>
-        </div>`
+        </div>`;
 });
 
-console.log(producthtml);
+document.querySelector(".js-product-grid").innerHTML = producthtml;
 
-document.querySelector('.js-product-grid').innerHTML = producthtml;
+document.querySelectorAll(".js-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    const productId = button.dataset.productId;
+
+    /* in above code same type of product was added seprately instead of adding its quantity.
+   so we created a foreach loop for that
+   */
+    let matchingItem;
+
+    cart.forEach((item) => {
+      if (item.productId === productId) {
+        matchingItem = item;
+      }
+    });
+
+    if (matchingItem) {
+      matchingItem.qantity += 1;
+    } else {
+      cart.push({
+        productId: productId,
+        qantity: 1,
+      });
+    }
+    console.log(cart);
+  });
+});
