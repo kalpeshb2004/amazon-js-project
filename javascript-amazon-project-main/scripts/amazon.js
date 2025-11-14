@@ -1,0 +1,64 @@
+/*Javascript Rule.
+1.save the data
+2.generate the html
+3.make it ineteractive 
+*/
+
+//1.Save the data.
+/* instead of using lots of products in js by inserting then one by one we using product page */
+
+let producthtml = ''; 
+products.forEach((product) => {
+    producthtml += `<div class="product-container">
+          <div class="product-image-container">
+            <img class="product-image"
+              src="${product.image}">
+          </div>
+
+          <div class="product-name limit-text-to-2-lines">
+            ${product.name}
+          </div>
+
+          <div class="product-rating-container">
+            <img class="product-rating-stars"
+              src="images/ratings/rating-${product.rating.stars * 10}.png">
+            <div class="product-rating-count link-primary">
+              ${product.rating.count}
+            </div>
+          </div>
+
+          <div class="product-price">
+            $${(product.priceCents / 100).toFixed(2)}
+          </div>
+
+          <div class="product-quantity-container">
+            <select>
+              <option selected value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+
+          <div class="product-spacer"></div>
+
+          <div class="added-to-cart">
+            <img src="images/icons/checkmark.png">
+            Added
+          </div>
+
+          <button class="add-to-cart-button button-primary">
+            Add to Cart
+          </button>
+        </div>`
+});
+
+console.log(producthtml);
+
+document.querySelector('.js-product-grid').innerHTML = producthtml;
