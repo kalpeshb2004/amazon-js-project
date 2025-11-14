@@ -66,6 +66,7 @@ document.querySelectorAll(".js-button").forEach((button) => {
   button.addEventListener("click", () => {
     const productId = button.dataset.productId;
 
+    //data set is an atrributes .
     /* in above code same type of product was added seprately instead of adding its quantity.
    so we created a foreach loop for that
    */
@@ -86,5 +87,17 @@ document.querySelectorAll(".js-button").forEach((button) => {
       });
     }
     console.log(cart);
+
+    //we gonna calculate total cart quantity
+    let cartQuantity = 0;
+
+    cart.forEach((item) => {
+      cartQuantity += item.qantity;
+    });
+    console.log(cartQuantity);
+
+    //now we gonna display the cart.quantity on the page
+    document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
+
   });
 });
