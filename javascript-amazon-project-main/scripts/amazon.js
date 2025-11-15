@@ -1,4 +1,5 @@
-import {cart} from '../data/cart.js';
+import { cart } from '../data/cart.js';
+import { products } from '../data/products.js';
 
 /*Javascript Rule.
 1.save the data
