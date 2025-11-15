@@ -1,3 +1,5 @@
+import {cart} from '../data/cart.js';
+
 /*Javascript Rule.
 1.save the data
 2.generate the html
@@ -79,11 +81,11 @@ document.querySelectorAll(".js-button").forEach((button) => {
     });
 
     if (matchingItem) {
-      matchingItem.qantity += 1;
+      matchingItem.quantity += 1;
     } else {
       cart.push({
         productId: productId,
-        qantity: 1,
+        quantity: 1,
       });
     }
     console.log(cart);
@@ -92,7 +94,7 @@ document.querySelectorAll(".js-button").forEach((button) => {
     let cartQuantity = 0;
 
     cart.forEach((item) => {
-      cartQuantity += item.qantity;
+      cartQuantity += item.quantity;
     });
     console.log(cartQuantity);
 
