@@ -1,5 +1,5 @@
-import { cart } from '../data/cart.js';
-import { products } from '../data/products.js';
+import { cart , addToCart} from "../data/cart.js";
+import { products } from "../data/products.js";
 
 /*Javascript Rule.
 1.save the data
@@ -69,38 +69,25 @@ document.querySelectorAll(".js-button").forEach((button) => {
   button.addEventListener("click", () => {
     const productId = button.dataset.productId;
 
-    //data set is an atrributes .
-    /* in above code same type of product was added seprately instead of adding its quantity.
-   so we created a foreach loop for that
-   */
-    let matchingItem;
+    //we are calling the addToCart function
+    addToCart(productId);
+    //we are calling the cartQuantity function.
+    cartQuantity();
 
-    cart.forEach((item) => {
-      if (item.productId === productId) {
-        matchingItem = item;
-      }
-    });
+    
 
-    if (matchingItem) {
-      matchingItem.quantity += 1;
-    } else {
-      cart.push({
-        productId: productId,
-        quantity: 1,
+    //we are creating function cartQuantity and inserting all the code within this function.
+    function cartQuantity() {
+      //we gonna calculate total cart quantity
+      let cartQuantity = 0;
+
+      cart.forEach((cartItem) => {
+        cartQuantity += cartItem.quantity;
       });
+      console.log(cartQuantity);
+
+      //now we gonna display the cart.quantity on the page
+      document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
     }
-    console.log(cart);
-
-    //we gonna calculate total cart quantity
-    let cartQuantity = 0;
-
-    cart.forEach((item) => {
-      cartQuantity += item.quantity;
-    });
-    console.log(cartQuantity);
-
-    //now we gonna display the cart.quantity on the page
-    document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
-
   });
 });
